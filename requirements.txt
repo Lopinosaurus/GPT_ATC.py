@@ -1,5 +1,10 @@
 pipwin
 pyaudio
 SpeechRecognition
-pyttsx3
 openai
+python-dotenv
+asyncio
+edge-tts
+playsound==1.2.2
+wave
+scipy
