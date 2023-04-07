@@ -95,8 +95,6 @@ You're ready to go !
 
 ## Usage
 
-SHELL FILES ARE NOT IMPLEMENTED YET. JUST RUN `main.py`. The following instructions are for later :
-
 - On Linux systems :
   ```sh
   chmod +x run_atc.sh
@@ -118,6 +116,7 @@ SHELL FILES ARE NOT IMPLEMENTED YET. JUST RUN `main.py`. The following instructi
 - [ ] Add airport VAC map understanding
 - [ ] Add link between MSFS2020 and GPT_ATC.py
 - [ ] Add radio sound effect
+- [ ] Add actual airport comprehension
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
