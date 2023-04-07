@@ -6,5 +6,5 @@ python-dotenv
 asyncio
 edge-tts
 playsound==1.2.2
-wave
-scipy
+keyboard
+json

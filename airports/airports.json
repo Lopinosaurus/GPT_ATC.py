@@ -1,0 +1,39 @@
+
+{
+    "airports": [
+    {
+        "icao": "LFBD",
+        "name": "Bordeaux-Mérignac",
+        "runways": [
+            {"id":"29",
+            "points":["Foxtrot"]},
+
+            {"id":"11",
+            "points":["Golf"]},
+        
+            {"id":"05",
+            "points":["Delta", "Charlie"]},
+            
+            {"id":"23",
+            "points":["Alpha", "Bravo"]}
+        ]
+    },
+
+    {
+        "icao": "LFBO",
+        "name": "Toulouse-Blagnac",
+        "runways": [
+            {"id": "32 Left",
+            "points": ["Sierra 2", "Sierra 3"]},
+
+            {"id": "32 Right",
+            "points": ["November 1", "November 2"]},
+
+            {"id": "14 Right",
+            "points": ["Sierra 11", "Sierra 10", "Mike 11", "Mike 10"]},
+
+            {"id": "14 Left",
+            "points": ["Mike 8", "November 8"]}
+        ]
+    }]
+}
