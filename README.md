@@ -82,7 +82,7 @@ This following section will detail about how you can install and use GPT_ATC.py
 
 - Install the required libs.
   ```sh
-  pip3 -r install requirements.txt
+  pip3 install -r requirements.txt
   ```
 - Create an [openai](https://openai.com/) account and create a [paid account](https://platform.openai.com/account/billing/payment-methods). 
 - Create an openai [api key](https://platform.openai.com/account/api-keys) and paste it into `.env` file.
