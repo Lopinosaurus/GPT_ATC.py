@@ -6,16 +6,16 @@
         "name": "Bordeaux-Mérignac",
         "runways": [
             {"id":"29",
-            "points":["Foxtrot"]},
+            "points":"Foxtrot"},
 
             {"id":"11",
-            "points":["Golf"]},
+            "points":"Golf"},
         
             {"id":"05",
-            "points":["Delta", "Charlie"]},
+            "points":"Delta, Charlie"},
             
             {"id":"23",
-            "points":["Alpha", "Bravo"]}
+            "points":"Alpha, Bravo"}
         ]
     },
 
@@ -24,16 +24,16 @@
         "name": "Toulouse-Blagnac",
         "runways": [
             {"id": "32 Left",
-            "points": ["Sierra 2", "Sierra 3"]},
+            "points": "Sierra 2, Sierra 3"},
 
             {"id": "32 Right",
-            "points": ["November 1", "November 2"]},
+            "points": "November 1, November 2"},
 
             {"id": "14 Right",
-            "points": ["Sierra 11", "Sierra 10", "Mike 11", "Mike 10"]},
+            "points": "Sierra 11, Sierra 10, Mike 10, Mike 11"},
 
             {"id": "14 Left",
-            "points": ["Mike 8", "November 8"]}
+            "points": "Mike 8, November 8"}
         ]
     }]
 }

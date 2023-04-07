@@ -12,9 +12,7 @@ load_dotenv()
 openai.api_key = os.getenv("API_KEY")
 
 # Properties definition
-messages=[{"role":"system", "content":"Je veux que tu agisses comme un controleur aérien. Tes réponses doivent être concises et précises. Tu dois uniquement utiliser le réel langage aéronautique d'un controleur aérien, tu n'as pas forcément besoin d'être poli, tu dois me donner des indications pour que je puisse piloter. Je te parlerai et tu me répondra en anglais. Je vais te donner des détails de mon aéroport de départ et d'arrivé (pistes en services, taxiway, conditions météorologiques). Je veux que tu me réponde en fonction de ces informations que tu garderas en mémoire."}]
-departure_icao = None
-arrival_icao = None
+messages=[{"role":"system", "content":"I want you to act like an air traffic controller. Your answers should be concise and precise. You only have to use the real aeronautical language of an air traffic controller, you don't necessarily need to be polite, you have to give me directions so that I can fly. I will talk to you and you will answer me in English. I will give you details of my departure and arrival airport (runways in service, taxiway, weather conditions). I want you to answer me based on this information that you will remember. You will be careful not to confuse the runways and taxiways of the 2 airports (departures and arrivals). A runway is reachable only by one point, so you must indicate only one when the pilot wants to taxi to a runway."}]
 
 
 
@@ -53,39 +51,48 @@ async def tts_play(rep: str) -> None:
     await tts_com.save("voice.mp3")
 
 
-def check_icao(icao: str) -> bool:
+def check_icao(icao: str):
     """
     Checks if the inputed ICAOs are presents in current data set.
     """
-    file = open("../airports/airports.json", 'r+', encoding="utf-8")
-    airports = json.load(file)
+    file = open("airports/airports.json", 'r+', encoding="utf-8")
+    airports = json.load(file)['airports']
     is_present = False
-    for ap in airports:
-        if icao in ap['icao']:
-            is_present = True
+    index = -1
+    for i in range(len(airports)):
+        try:
+            if icao.upper() in airports[i]['icao']:
+                is_present = True
+        except:
+            pass
     if not is_present:
         print("The specified airport cannot be found in current database. You can add it (highly recommended) or just indicate to ATC your current airport (will generate more confused ATC answers)")
     file.close()
-    return is_present
+    return (is_present, index)
     
 
 def main() -> None:
     """
     Launch speech recognition then GPT3.5 requests
     """
-    file = open("../airports/airports.json", 'r+', encoding="utf-8")
-    airports = json.load(file)
+    file = open("airports/airports.json", 'r+', encoding="utf-8")
+    airports = json.load(file)['airports']
     departure = input("Enter departure ICAO : ")
     arrival = input("Enter arrival ICAO : ")
-    check_d = check_icao(departure)
-    check_a = check_icao(arrival)
+    (check_d, index_d) = check_icao(departure)
+    (check_a, index_a) = check_icao(arrival)
     
-    #if check_d:
-        # message.append All infos
-    # if check_a:
-        # message.append All infos
+    messages.append({"role":"system", "content":"The pilot will take of from " + departure + " and will fly to " + arrival})
+
+    if check_d:
+        for i in range(len(airports[index_d]['runways'])):
+            messages.append({"role":"system", "content":"A runway on service at the departure airport is the runway " + airports[index_d]['runways'][i]["id"] + " reachable by points " + airports[index_d]['runways'][i]['points']})
+    
+    if check_a:
+        for i in range(len(airports[index_a]['runways'])):
+            messages.append({"role":"system", "content":"A runway on service at the arrival airport is the runway " + airports[index_a]['runways'][i]["id"] + " reachable by points" + airports[index_a]['runways'][i]['points']})
         
-    
+
     print("GPT_ATC.py ready. Press k to talk to ATC.")
     while True:
         if keyboard.is_pressed('k'):
